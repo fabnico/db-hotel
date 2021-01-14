@@ -1,0 +1,64 @@
+Seleziona tutti gli ospiti che sono stati identificati con la carta di identità
+
+SELECT * 
+FROM ospiti 
+WHERE document_type = "CI" 
+
+Seleziona tutti gli ospiti che sono nati dopo il 1988
+
+SELECT * 
+FROM ospiti
+WHERE date_of_birth > "1988-12-31" 
+
+
+Seleziona tutti gli ospiti il cui nome inizia con la D
+
+SELECT  * 
+FROM ospiti 
+WHERE name
+LIKE 'D%'
+
+
+
+Group by
+
+
+
+Conta gli ospiti raggruppandoli per anno di nascita
+
+SELECT YEAR(date_of_birth), count(*) 
+FROM ospiti 
+GROUP BY YEAR(date_of_birth) 
+
+
+Somma i prezzi dei pagamenti raggruppandoli per status
+
+SELECT status, SUM(price)
+
+FROM pagamenti
+
+GROUP BY status
+
+
+
+Conta quante volte è stata prenotata ogni stanza
+
+SELECT stanza_id, COUNT(id) 
+
+FROM prenotazioni 
+
+GROUP BY stanza_id 
+
+
+Join
+
+
+Stampare tutti gli ospiti per ogni prenotazione
+
+SELECT *
+FROM ospiti
+Join prenotazioni_has_ospiti
+ON ospite_id = ospiti.id  
+ORDER BY ospiti.id ASC
+
+
